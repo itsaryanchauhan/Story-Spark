@@ -22,7 +22,7 @@ def generate_story_ideas(prompt, genre=None, keywords=[]):
     formatted_prompt += f"  including the keywords: {', '.join(keywords)}"
 
   # Load the appropriate model for story generation
-  model_name = ModelCatalog.get_model_for_task("story_generation")
+  model_name = "bling-phi-3-gguf"
 
   # Use LLMWare to generate creative text formats
   model = Prompt().load_model(model_name)

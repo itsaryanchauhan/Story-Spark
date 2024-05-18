@@ -8,9 +8,9 @@ def generate_story_ideas(model_name):
     # Initial story generation (run only once)
     if not current_story:
       genre = input("Enter story genre (e.g., fantasy, sci-fi): ")
-      character = input("Describe the main character (briefly): Gove, a young technician. ")
-      setting = input("Describe the story setting (briefly): The Rustbucket, an aging asteroid mining vessel. ")
-      conflict = input("Describe the initial conflict the character faces: Gove discovers a strange anomaly within an asteroid. ")
+      character = input("Describe the main character (briefly): ")
+      setting = input("Describe the story setting (briefly): ")
+      conflict = input("Describe the initial conflict the character faces: ")
   
       user_input = f"Write a {genre} story about {character} in {setting} facing the challenge of {conflict}. Make it suspenseful and character-driven. {current_story}"
 

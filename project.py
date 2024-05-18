@@ -3,11 +3,14 @@ from llmware.prompts import Prompt
 
 def generate_story_ideas(model_name):
   model = Prompt().load_model(model_name)
+  current_story = ""
   while True:
     genre = input("Enter story genre (e.g., fantasy, sci-fi): ")
     character = input("Describe the main character (briefly): ")
     setting = input("Describe the story setting (briefly): ")
-    user_input = f"Write a {genre} story about {character} in {setting}. Make it suspenseful and character-driven. Here are some story elements you can consider including: [List specific elements if desired]"
+    conflict = input("Describe the initial conflict the character faces: ")
+    
+    user_input = f"Write a {genre} story about {character} in {setting} facing the challenge of {conflict}. Make it suspenseful and character-driven. {current_story}"
 
     if user_input.lower() == 'end':
       print("Exiting ..")
@@ -15,15 +18,16 @@ def generate_story_ideas(model_name):
 
     output = model.prompt_main(user_input,
                                 prompt_name="generate_story",
-                                temperature=0.6)
+                                temperature=0.7)
     story = output["llm_response"].strip("\n")
+    current_story += story + "\n\n"
 
-    print("Story: ", story)
-    user_feedback = input("Do you like this story (y/n)? ")
-    if user_feedback.lower() == 'y':
+    print("Story so far: ", current_story)
+    user_feedback = input("Do you want to continue the story (y/n) or are you happy with this length? ")
+    if user_feedback.lower() == 'n':
       break
     else:
-      print("Try refining the prompt based on your preferences.")
+      print("What happens next?")
 
 if __name__ == "__main__":
   model_name = "phi-3-gguf"

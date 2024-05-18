@@ -2,6 +2,8 @@
 
 AI-powered brainstorming tool that sparks creative ideas for writing projects.
 
+[![Example Video](https://img.youtube.com/vi/mdxuFBPnhUM/0.jpg)](https://www.youtube.com/watch?v=mdxuFBPnhUM)
+
 ## Installation
 
 Make sure you have all the required dependencies:

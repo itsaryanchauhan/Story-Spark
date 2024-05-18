@@ -14,8 +14,10 @@ sudo apt update
 Use following code to make sure you have python 3.9 and above:
 ```bash
 python -- version
-       or
-python3 --version
+```
+OR
+```bash
+python3 -- version
 ```
 Install [pip](https://pip.pypa.io/en/stable/) using:
 ```bash

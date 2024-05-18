@@ -27,10 +27,10 @@ def generate_story_ideas(prompt, genre=None, keywords=[]):
   # Use LLMWare to generate creative text formats
   model = Prompt().load_model(model_name)
   response = model.prompt_main(
-      prompt=f"Generate a list of story ideas for {formatted_prompt}",
-      format="list",
-      num_items=5  # Change num_items to adjust the number of ideas generated
-  )
+    prompt=f"Generate a list of story ideas for {formatted_prompt}",
+    # Remove format="list" argument
+    num_items=5  # Change num_items to adjust the number of ideas generated
+)
   return response.splitlines()
 
 

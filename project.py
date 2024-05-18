@@ -5,16 +5,14 @@ def generate_story_ideas(model_name):
   model = Prompt().load_model(model_name)
   current_story = ""
   while True:
-    genre = input("Enter story genre (e.g., fantasy, sci-fi): ")
-    character = input("Describe the main character (briefly): ")
-    setting = input("Describe the story setting (briefly): ")
-    conflict = input("Describe the initial conflict the character faces: ")
-    
-    user_input = f"Write a {genre} story about {character} in {setting} facing the challenge of {conflict}. Make it suspenseful and character-driven. {current_story}"
-
-    if user_input.lower() == 'end':
-      print("Exiting ..")
-      break
+    # Initial story generation (run only once)
+    if not current_story:
+      genre = input("Enter story genre (e.g., fantasy, sci-fi): ")
+      character = input("Describe the main character (briefly): Gove, a young technician. ")
+      setting = input("Describe the story setting (briefly): The Rustbucket, an aging asteroid mining vessel. ")
+      conflict = input("Describe the initial conflict the character faces: Gove discovers a strange anomaly within an asteroid. ")
+  
+      user_input = f"Write a {genre} story about {character} in {setting} facing the challenge of {conflict}. Make it suspenseful and character-driven. {current_story}"
 
     output = model.prompt_main(user_input,
                                 prompt_name="generate_story",
@@ -22,12 +20,18 @@ def generate_story_ideas(model_name):
     story = output["llm_response"].strip("\n")
     current_story += story + "\n\n"
 
-    print("Story so far: ", current_story)
+    # Print generated story with a separator
+    print("*** Generated Story ***")
+    print(current_story)
+    print("*** End of Generated Story ***")
+
     user_feedback = input("Do you want to continue the story (y/n) or are you happy with this length? ")
+    
+    # Continue using the existing story for subsequent prompts
     if user_feedback.lower() == 'n':
       break
     else:
-      print("What happens next?")
+      user_input = f"What happens next in the story? {current_story}"
 
 if __name__ == "__main__":
   model_name = "phi-3-gguf"

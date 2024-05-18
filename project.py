@@ -1,7 +1,7 @@
 from llmware.models import ModelCatalog
 from llmware.prompts import Prompt
 
-# Function to generate story ideas
+
 def generate_story_ideas(prompt, genre=None, keywords=[]):
   """
   Generates creative story ideas based on user input.
@@ -33,10 +33,32 @@ def generate_story_ideas(prompt, genre=None, keywords=[]):
   )
   return response.splitlines()
 
-# Example usage
-prompt = "A young inventor stumbles upon a magical device."
-ideas = generate_story_ideas(prompt, genre="fantasy", keywords=["friendship"])
 
-print("Here are some story spark ideas for you:")
-for idea in ideas:
-  print(idea)
+def main():
+  # Get user input for story prompt
+  prompt = input("Enter a story prompt (e.g., A young inventor stumbles upon a magical device): ")
+
+  # Get user input for genre (optional)
+  genre = input("Enter a genre (optional): ")
+  if genre.lower() == "skip":
+    genre = None  # Set genre to None if user skips
+
+  # Get user input for keywords (optional)
+  keywords = []
+  while True:
+    keyword = input("Enter a keyword (or 'done' to finish): ")
+    if keyword.lower() == "done":
+      break
+    keywords.append(keyword)
+
+  # Generate story ideas
+  ideas = generate_story_ideas(prompt, genre, keywords)
+
+  # Print the generated ideas
+  print("Story Ideas:")
+  for idea in ideas:
+    print(idea)
+
+
+if __name__ == "__main__":
+  main()

@@ -1,18 +1,13 @@
 from llmware.models import ModelCatalog
 from llmware.prompts import Prompt
 
-def generate_story_ideas(model_name):
+def generate_story_ideas(model_name,genre,character,setting,conflict):
   model = Prompt().load_model(model_name)
   current_story = ""
 
   while True:
     # Initial story generation (run only once)
     if not current_story:
-      genre = input("Enter story genre (e.g., fantasy, sci-fi): ")
-      character = input("Describe the main character (briefly): ")
-      setting = input("Describe the story setting (briefly): ")
-      conflict = input("Describe the initial conflict the character faces: ")
-
     # Build the user prompt
     user_input = f"Write a suspenseful and character-driven continuation of the story:\n{current_story}" \
                  f"\nGenre: {genre}\nCharacter: {character}\nSetting: {setting}\nConflict: {conflict}"
@@ -39,4 +34,8 @@ def generate_story_ideas(model_name):
 # Run the program if executed directly
 if __name__ == "__main__":
   model_name = "phi-3-gguf"
-  generate_story_ideas(model_name)
+  genre = input("Enter story genre (e.g., fantasy, sci-fi): ")
+  character = input("Describe the main character (briefly): ")
+  setting = input("Describe the story setting (briefly): ")
+  conflict = input("Describe the initial conflict the character faces: ")
+  generate_story_ideas(model_name,genre,character,setting,conflict)

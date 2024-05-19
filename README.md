@@ -43,8 +43,10 @@ pip install llmware
 
 ## Usage
 
+### In Terminal itself:
+
 ```python
-python3 project.py
+python3 story_generator.py
 ```
 
 ## Contributing

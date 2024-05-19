@@ -1,31 +1,32 @@
-from flask import Flask, render_template, request
-# Assuming your existing code (generate_story_ideas) is in a file named story_generator.py
-
-# Import the generate_story_ideas function
-from story_generator import generate_story_ideas
+from flask import Flask, request, jsonify
+from story_generator import generate_story_ideas  # Import the generate_story_ideas function
 
 app = Flask(__name__)
 
-# Route for the main page (/)
-@app.route('/')
-def index():
-  return render_template('index.html')  # This assumes you have an index.html file in your templates directory
-
-# Route for handling form submissions (/generate_story)
 @app.route('/generate_story', methods=['POST'])
-def generate_story():
-  # Access user input from the form
-  genre = request.form['genre']
-  character = request.form['character']
-  setting = request.form['setting']
-  conflict = request.form['conflict']
+def generate_story_api():
+  # Receive user input from the request body
+  user_input = request.json
 
-  # Call the generate_story_ideas function with user input
-  generated_story = generate_story_ideas(model_name="phi-3-gguf", genre=genre, character=character, setting=setting, conflict=conflict)
+  # Extract user input data
+  genre = user_input.get('genre')
+  character = user_input.get('character')
+  setting = user_input.get('setting')
+  conflict = user_input.get('conflict')
 
-  # Pass the generated story to the template for display
-  return render_template('story.html', generated_story=generated_story)
+  # Validate input (optional)
+  if not all([genre, character, setting, conflict]):
+    return jsonify({'error': 'Missing required input fields'}), 400
 
-# Run the Flask development server (optional for this example)
+  # Generate story using the function from story_generator.py
+  generated_story = generate_story_ideas(model_name="phi-3-gguf",  # Replace with your model name
+                                           genre=genre,
+                                           character=character,
+                                           setting=setting,
+                                           conflict=conflict)
+
+  # Return generated story as JSON
+  return jsonify({'generated_story': generated_story})
+
 if __name__ == '__main__':
   app.run(debug=True)

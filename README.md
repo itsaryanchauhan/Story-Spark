@@ -28,11 +28,11 @@ sudo apt install python3-pip
 ### Clone the repository using:
 
 ```bash 
- git clone https://github.com/itsaryanchauhan/Story-Spark.git
+ git clone https://github.com/llmware-ai/llmware.git
 ```
 ### Change directory into cloned repository using:
 ```bash
- cd Story-Spark
+ cd llmware/Quest/Story-Spark
 ```
 
 ### [pip](https://pip.pypa.io/en/stable/) to install llmware.

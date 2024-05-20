@@ -20,10 +20,11 @@
         <button type="submit">Generate Story</button>
     </form>
 
-    <div id="generated-story"></div>
-    <div id="feedback-section" style="display:none;">
-        <p>Is the story length sufficient? <button id="yes-button">Yes</button> <button id="no-button">No</button></p>
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
     </div>
+
+    <div id="generated-story"></div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

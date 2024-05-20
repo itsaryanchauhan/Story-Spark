@@ -1,3 +1,4 @@
+# app.py
 from flask import Flask, render_template, request, jsonify
 from story_generator import generate_story_ideas
 

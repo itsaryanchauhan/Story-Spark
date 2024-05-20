@@ -1,49 +1,31 @@
-from flask import Flask, request, jsonify
-from story_generator import generate_story_ideas  # Import the generate_story_ideas function
+from flask import Flask, render_template, request
+# Assuming your existing code (generate_story_ideas) is in a file named story_generator.py
+
+# Import the generate_story_ideas function
+from story_generator import generate_story_ideas
 
 app = Flask(__name__)
 
+# Route for the main page (/)
 @app.route('/')
-def root():
-    """Returns a welcome message and instructions for using the app."""
-    return jsonify({
-        'message': 'Welcome to the Story Generator!',
-        'instructions': 'To generate a story, please send a POST request to the /generate_story endpoint with the following JSON data in the request body:',
-        'data_fields': {
-            'genre': 'The genre of your story (e.g., fantasy, sci-fi)',
-            'character': 'A description of your main character',
-            'setting': 'The setting of your story',
-            'conflict': 'The initial conflict your character faces'
-        }
-    })
+def index():
+  return render_template('index.html') # This assumes you have an index.html file in your templates directory
 
+# Route for handling form submissions (/generate_story)
 @app.route('/generate_story', methods=['POST'])
-def generate_story_api():
-    """Generates a story based on user input received as JSON."""
+def generate_story():
+  # Access user input from the form
+  genre = request.form['genre']
+  character = request.form['character']
+  setting = request.form['setting']
+  conflict = request.form['conflict']
 
-    # Extract user input from the request body
-    try:
-        user_input = request.json
-        genre = user_input.get('genre')
-        character = user_input.get('character')
-        setting = user_input.get('setting')
-        conflict = user_input.get('conflict')
-    except (KeyError, TypeError) as e:
-        return jsonify({'error': f'Invalid JSON data: {e}'}), 400
+  # Call the generate_story_ideas function with user input
+  generated_story = generate_story_ideas(model_name="phi-3-gguf", genre=genre, character=character, setting=setting, conflict=conflict)
 
-    # Validate required input fields
-    if not all([genre, character, setting, conflict]):
-        return jsonify({'error': 'Missing required input fields'}), 400
+  # Pass the generated story to the template for display (modified line)
+  return render_template('story.html', generated_story=generated_story)
 
-    # Generate story using the function from story_generator.py
-    generated_story = generate_story_ideas(model_name="phi-3-gguf",  # Replace with your model name
-                                           genre=genre,
-                                           character=character,
-                                           setting=setting,
-                                           conflict=conflict)
-
-    # Return generated story as JSON
-    return jsonify({'generated_story': generated_story})
-
+# Run the Flask development server (optional for this example)
 if __name__ == '__main__':
-    app.run(debug=True)
+  app.run(debug=True)

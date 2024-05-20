@@ -1,26 +1,80 @@
+/* General body styles */
 body {
-  font-family: sans-serif;
-  margin: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
 }
 
+/* Header styles */
 h1 {
-  text-align: center;
-  margin-bottom: 20px;
+    text-align: center;
+    color: #5c67f2;
+}
+
+/* Form styling */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
 }
 
 label {
-  display: block;
-  margin-bottom: 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    display: block;
 }
 
+input[type="text"],
 textarea {
-  width: 100%;
-  resize: vertical;
-  margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
+/* Button styling */
+button {
+    background-color: #5c67f2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #4a54e1;
+}
+
+/* Story display area */
 #generated-story {
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-top: 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    min-height: 100px;
+    white-space: pre-wrap; /* Maintains whitespace formatting from the generated story */
+}
+
+/* Feedback section styling */
+#feedback-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#feedback-section button {
+    margin: 0 10px;
 }

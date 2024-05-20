@@ -7,7 +7,7 @@ def generate_story_ideas(model_name, genre, character, setting, conflict, contin
     if not continue_story:
         current_story = ""
 
-    iterations = 10  # Number of segments to generate before concluding
+    iterations = 4  # Number of segments to generate before concluding
 
     # Generate the main body of the story
     for i in range(iterations - 1):  # Save the last iteration for the conclusion

@@ -66,15 +66,21 @@ button:hover {
     border-radius: 8px;
     margin-top: 20px;
     min-height: 100px;
-    white-space: pre-wrap; /* Maintains whitespace formatting from the generated story */
+    white-space: pre-wrap;
 }
 
-/* Feedback section styling */
-#feedback-section {
-    margin-top: 20px;
-    text-align: center;
+/* Progress Bar styles */
+.progress-container {
+    width: 100%;
+    background: #ddd;
+    border-radius: 5px;
+    margin: 20px 0;
 }
 
-#feedback-section button {
-    margin: 0 10px;
+.progress-bar {
+    height: 20px;
+    background-color: #5c67f2;
+    border-radius: 5px;
+    width: 0%;
+    transition: width 0.4s ease-in-out;
 }

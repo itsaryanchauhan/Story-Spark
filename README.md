@@ -28,7 +28,7 @@ sudo apt install python3-pip
 ### Clone the repository using:
 
 ```bash 
- git clone https://github.com/llmware-ai/llmware.git
+ git clone https://github.com/itsaryanchauhan/Story-Spark.git
 ```
 ### Change directory into cloned repository using:
 ```bash
@@ -46,8 +46,15 @@ pip install llmware
 ### In Terminal itself:
 
 ```python
-python3 story_generator.py
+python3 project.py
 ```
+
+### For Web APP:
+
+```python
+python3 app.py
+```
+and then run the given link on your browser(preferably incognito tab)
 
 ## Contributing
 

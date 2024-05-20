@@ -21,7 +21,7 @@ form.addEventListener('submit', (event) => {
     generatedStoryDiv.textContent = data.generated_story;
     const isStoryLongEnough = confirm("Is the story length sufficient?");
     if (!isStoryLongEnough) {
-      fetchStory();
+      fetchStory(); // Simulate form submission for continuation (optional)
     }
   })
   .catch(error => {
@@ -30,6 +30,7 @@ form.addEventListener('submit', (event) => {
   });
 });
 
+// Optional function for continuing the story (if implemented in python)
 function fetchStory() {
   // Simulate form submission to fetch story again
   const form = document.getElementById('story-form');

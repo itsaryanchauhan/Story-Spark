@@ -1,16 +1,20 @@
 // script.js
 const form = document.getElementById('story-form');
 const generatedStoryDiv = document.getElementById('generated-story');
+const noButton = document.getElementById('no-button');
 
 form.addEventListener('submit', async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault();
+    submitStoryData();
+});
 
+async function submitStoryData(continueStory = false) {
     const genre = document.getElementById('genre').value;
     const character = document.getElementById('character').value;
     const setting = document.getElementById('setting').value;
     const conflict = document.getElementById('conflict').value;
 
-    const data = { genre, character, setting, conflict };
+    const data = { genre, character, setting, conflict, continue_story: continueStory };
 
     try {
         const response = await fetch('/generate_story', {
@@ -24,4 +28,8 @@ form.addEventListener('submit', async (event) => {
         console.error('Error:', error);
         generatedStoryDiv.textContent = 'Error: Something went wrong.';
     }
+}
+
+noButton.addEventListener('click', function() {
+    submitStoryData(true);
 });

@@ -56,6 +56,10 @@ python3 app.py
 ```
 and then run the given link on your browser(preferably incognito tab)
 
+
+### Changing length of story generation
+One can change the number of segments generated per story by modifying the variable in the story_generator.py file
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
